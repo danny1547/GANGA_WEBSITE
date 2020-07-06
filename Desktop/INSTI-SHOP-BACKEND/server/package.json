@@ -1,0 +1,31 @@
+{
+  "name": "foodapp-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kaousheik/foodapp-backend.git",
+  "author": "<kaousheik@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn ./index.ts",
+    "gen": "npx prisma generate",
+    "migrate": "npx prisma migrate save --name init --experimental && npx prisma migrate up --experimental"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.1.3",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^14.0.14",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.50",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.1.3",
+    "apollo-server": "^2.15.1",
+    "bcryptjs": "^2.4.3",
+    "class-validator": "^0.12.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.2.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.0.0-rc.3"
+  }
+}
