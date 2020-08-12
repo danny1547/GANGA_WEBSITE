@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model author {
+  id       Int     @default(autoincrement()) @id
+  lastname String?
+  name     String?
+  book     book[]
+}
+
+model book {
+  authorid  Int
+  bookid    String      @unique
+  genre     String
+  id        Int         @default(autoincrement()) @id
+  isbn      String
+  language  String
+  name      String
+  publisher String
+  status    book_status @default(AVAILABLE)
+  year      String
+  author    author      @relation(fields: [authorid], references: [id])
+  register  register[]
+
+  @@index([authorid], name: "authorid")
+}
+
+model register {
+  bookID        String
+  id            Int       @default(autoincrement()) @id
+  issued_date   DateTime? @default(now())
+  returned_date DateTime?
+  return_status Boolean   @default(false)
+  roll_number   String
+  student_name  String
+  book          book      @relation(fields: [bookID], references: [bookid])
+
+  @@index([bookID], name: "register_ibfk_2")
+}
+
+enum book_status {
+  AVAILABLE
+  ISSUED
+}
